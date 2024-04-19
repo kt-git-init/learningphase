@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Details</title>
+
+    <style>
+          /* Basic styling for the card */
+          #card {
+            width: 300px;
+            border: 2px solid #007bff; /* Border color changed */
+            border-radius: 12px;
+            padding: 20px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            text-align: center; /* Aligning content in the center */
+            background-color: #f9f9f9; /* Background color */
+            font-family: Arial, sans-serif; /* Font family */
+        }
+        /* Styling for the image */
+        #card img {
+            width: 150px; /* Adjusted image width */
+            border-radius: 50%; /* Rounded image */
+            margin-bottom: 20px;
+            display: block; /* Make sure image is displayed as a block element */
+            margin: 0 auto; /* Centering image */
+            border: 4px solid #fff; /* White border around the image */
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Image shadow */
+        }
+        /* Styling for the name */
+        #card h3 {
+            margin: 0;
+            font-size: 24px; /* Increased font size */
+            color: #333;
+        }
+        /* Button styling */
+        #infoButton {
+            background-color: #007bff; /* Button background color */
+            color: #fff; /* Button text color */
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+        #infoButton:hover {
+            background-color: #0056b3; /* Button background color on hover */
+        }
+
+        .container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh; /* Full viewport height */
+        }
+    </style>
+</head>
+<img>
+<div class="container">
+<div id="card">
+<button id="infoButton">Get Data</button>
+</div>
+</div>
+</body>
+
+<script>
+    const requestURL = 'https://api.github.com/users/kunal-tajne'
+
+    const xhr = new XMLHttpRequest();
+
+    xhr.open('GET', requestURL)
+
+    xhr.onreadystatechange = function() {
+
+        if(xhr.readyState === 4)
+        {
+            const data = JSON.parse(this.responseText)
+            console.log(data)
+
+            const displayData =  document.querySelector('#infoButton');
+            displayData.addEventListener('click', () => {
+
+                const displayUserdata = document.querySelector('#card')
+                console.log("here")
+                const userIdURL = data.avatar_url
+                const userName = data.name
+                const location = data.location
+                const hireable = data.hireable
+
+                displayUserdata.innerHTML = `<img src=${userIdURL}/>`
+
+                displayUserdata.innerHTML += `<h3>${userName}</h3>`
+
+                displayUserdata.innerHTML += `<h4>${location}</h4>`
+
+                displayUserdata.innerHTML += `<h4>Open to work: ${hireable === true ? "Yes" : "No"}</h4>`
+
+                displayUserdata.innerHTML += `<button id='hot'>Should you hire me?</button>`
+
+                document.querySelector('#hot').addEventListener('click', () => {
+
+                    displayUserdata.innerHTML += `<p>Yes</p>`
+
+                })
+
+
+
+                
+
+            })
+
+        }
+
+    }
+
+    xhr.send();
+
+</script>
+</html>
