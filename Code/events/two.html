@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body style="background-color: black; color: aliceblue">
+    <h1>Kunal Code's</h1>
+    <button id="button">Stop</button>
+  </body>
+  <script>
+    const changeText = function () {
+      document.querySelector("h1").innerHTML = "I am here hahaha";
+    };
+    const changeText2 = function () {
+      document.querySelector("h1").innerHTML = "Okay so?";
+    };
+
+     const interval1 = setInterval(changeText, 100);
+     const interval2 = setInterval(changeText2, 200);
+
+    document.querySelector('#button').addEventListener('click', () => {
+        clearInterval(interval1)
+        clearInterval(interval2)
+    })
+
+   
+  </script>
+</html>

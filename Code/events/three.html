@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body style="background-color: black; color: aliceblue">
+    <h1>Timer</h1>
+    <p id="counter"></p>
+    <button id="buttonStart">Start</button>
+    <button id="buttonStop">Stop</button>
+  </body>
+  <script>
+    let num = 0;
+    let currInterval;
+    function startTimer() {
+      currInterval = setInterval(() => {
+        document.querySelector("#counter").innerHTML = `${num} `;
+        num++;
+      }, 1000);
+    }
+
+    function stopTimer(currInterval) {
+      clearInterval(currInterval);
+    }
+
+    document.querySelector("#buttonStart").addEventListener("click", () => {
+      startTimer();
+    });
+
+    document.querySelector("#buttonStop").addEventListener("click", () => {
+      stopTimer(currInterval);
+    });
+  </script>
+</html>
